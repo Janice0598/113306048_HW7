@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Portfolio</title>
+    <link rel="stylesheet" href="HW7_CSS.css">
+</head>
+<body>
+    <div class="main-container">
+        <!-- Left Panel -->
+        <div class="left-panel">
+            <!-- Photo Panel -->
+            <div class="photo-panel">
+                <img src="ph.jpg" width="100%" height="auto" alt="profile">
+            </div> 
+            <!-- Text Content Panel -->
+            <div class="text-content">
+                <h1>JANICE</h1>
+                <script>
+                    function initEditNameFeature() {
+                        const nameElement = document.querySelector("h1");
+
+                        // Create Edit Button
+                        const editButton = document.createElement("button");
+                        editButton.textContent = "Edit";
+                        editButton.id = "editNameButton";
+
+                        // Insert button after h1
+                        nameElement.parentNode.insertBefore(editButton, nameElement.nextSibling);
+
+                        editButton.addEventListener("click", function () {
+                            if (editButton.textContent === "Edit") {
+                                const currentName = nameElement.textContent;
+                                const inputField = document.createElement("input");
+                                inputField.type = "text";
+                                inputField.id = "nameInput";
+                                inputField.value = currentName;
+
+                                nameElement.replaceWith(inputField);
+                                editButton.textContent = "Save";
+                            } else {
+                                const inputField = document.querySelector("#nameInput");
+                                const newName = inputField.value.trim();
+
+                                const newNameElement = document.createElement("h1");
+                                newNameElement.textContent = newName || "Unnamed";
+                                inputField.replaceWith(newNameElement);
+                                editButton.textContent = "Edit";
+                            }
+                        });
+                    }
+
+                    document.addEventListener("DOMContentLoaded", initEditNameFeature);
+                </script>
+                <div class="about-me">
+                    <h2>ABOUT ME</h2>
+                    <p>As a freshman in the Department of Management Information Systems at National Chengchi University, I have experience in Java, HTML, and CSS, and I’m looking forward to an exciting university experience!</p>
+                </div>
+                <div class="contact">
+                    <h2>CONTACT</h2>
+                    <p><a href="mailto:113306048@nccu.edu.tw">113306048@nccu.edu.tw</a></p>
+                </div>
+                <img src="nccu.png" alt="NCCU Icon" class="nccu-icon">
+            </div>
+        </div>
+
+        <div class="right-panel">
+            <div class="section education">
+                <h2>Education</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <span class="year">2024 - Now</span>
+                        <div class="description">National Chengchi University, Department of MIS</div>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="year">2022 - 2024</span>
+                        <div class="description">Taipei First Girls' Senior High School</div>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="year">2019 - 2022</span>
+                        <div class="description">Lishan Junior High School</div>
+                    </div>
+                </div>
+            </div>
+            <div class="section homework-list">
+                <h2>Homework List</h2>
+                <ul>
+                    <li>HW1 - <a href="https://github.com/Janice0598/HW1.git" > https://github.com/Janice0598/HW1.git</a></li><p></p>
+                    <li>HW2 - <a href="https://github.com/Janice0598/113306048_-_-.git" >https://github.com/Janice0598/113306048_-_-.git</a></li><p></p>
+                    <li>HW3 - <a href="https://github.com/Janice0598/HW3.git" >https://github.com/Janice0598/HW3.git</a></li>
+                </ul>
+            </div>
+            <div class="section favorite-music">
+                <h2>Favorite Music</h2>
+                <button id="addMusicButton">Add Music</button>
+                <div id="musicFormContainer"></div>
+                <div class="music-grid" id="musicGrid">
+                    <div class="music-item">
+                        <a href="https://youtu.be/dyDKO1U9IVQ?si=XASs4wwK4mj32oUB"><img src="1.jpg" alt="1"></a>
+                        <p>No Doubt</p>
+                    </div>
+                    <div class="music-item">
+                        <a href="https://youtu.be/tH_eWHRSSNE?si=1F6OI4qPOTGGaQoM"><img src="2.jpg" alt="2"></a>
+                        <p>BTHB</p>
+                    </div>
+                    <div class="music-item">
+                        <a href="https://youtu.be/eNPmM1DJQ8g?si=aXoei6qrhoD9Y3J8"><img src="3.jpg" alt="3"></a>
+                        <p>Chk Chk Boom</p>
+                    </div>
+                    <div class="music-item">
+                        <a href="https://youtu.be/1B8jreEieKs?si=76C1mANxJQy9jIIN"><img src="4.jpg" alt="4"></a>
+                        <p>Shhh!</p>
+                    </div>
+                </div>
+                <p class="music-note">Note: These are the songs I like a lot!</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const addMusicButton = document.getElementById("addMusicButton");
+        const musicFormContainer = document.getElementById("musicFormContainer");
+        const musicGrid = document.getElementById("musicGrid");
+
+        addMusicButton.addEventListener("click", function () {
+         
+            if (document.getElementById("musicForm")) return;
+
+            const form = document.createElement("form");
+            form.id = "musicForm";
+            form.className = "music-form";
+
+  
+             const linkInput = document.createElement("input");
+             linkInput.type = "url";
+             linkInput.placeholder = "Enter music link";
+             linkInput.id = "musicLink";
+             form.appendChild(linkInput);
+
+            const nameInput = document.createElement("input");
+            nameInput.type = "text";
+            nameInput.placeholder = "Enter music name";
+            nameInput.id = "musicName";
+            form.appendChild(nameInput);
+
+            const submitButton = document.createElement("button");
+            submitButton.type = "button";
+            submitButton.textContent = "Submit";
+            form.appendChild(submitButton);
+
+            musicFormContainer.appendChild(form);
+
+            submitButton.addEventListener("click", function () {
+                const musicLink = linkInput.value.trim();
+                const musicName = nameInput.value.trim();
+
+                if (!musicLink || !musicName) {
+                    alert("Please fill out all fields!"); 
+                    return;
+                }
+
+                const musicItem = document.createElement("div");
+                musicItem.className = "music-item";
+
+                const musicAnchor = document.createElement("a");
+                musicAnchor.href = musicLink;
+                musicAnchor.target = "_blank";
+
+                const musicImage = document.createElement("img");
+                musicImage.src = "music.png"; 
+                musicImage.alt = musicName; 
+
+                const musicDescription = document.createElement("p");
+                musicDescription.textContent = musicName;
+
+                musicAnchor.appendChild(musicImage);
+                musicItem.appendChild(musicAnchor);
+                musicItem.appendChild(musicDescription);
+                musicGrid.appendChild(musicItem);
+
+                musicFormContainer.innerHTML = "";
+            });
+        });
+    </script>
+</body>
+</html>
